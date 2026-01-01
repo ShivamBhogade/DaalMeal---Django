@@ -1,1 +1,2 @@
-web: gunicorn DaalMeal.wsgi
+web: gunicorn DaalMeal.wsgi:application
+
