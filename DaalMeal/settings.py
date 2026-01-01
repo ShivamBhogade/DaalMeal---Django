@@ -246,4 +246,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
+DEBUG = True   # OK for college demo
+
+ALLOWED_HOSTS = ['*']
+
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
