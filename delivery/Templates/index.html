@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <h1>Welcome to DaalMeal Delivery Service!</h1>
+    <p>Delicious food from your favorite restaurants 🍽️</p>
+
+    <div class="hero-buttons">
+        <a href="{% url 'signup' %}" class="btn primary">Sign Up</a>
+        <a href="{% url 'signin' %}" class="btn secondary">Sign In</a>
+    </div>
+</div>
+{% endblock %}

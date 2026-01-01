@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="success-wrapper">
+    <div class="success-card">
+        <div class="success-icon">🎉</div>
+
+        <h2>Order Placed Successfully!</h2>
+        <p class="success-sub">
+            Thank you for ordering with <strong>DaalMeal</strong>
+        </p>
+
+        <div class="order-details">
+            <div>
+                <span>Order ID</span>
+                <strong>#{{ order.id }}</strong>
+            </div>
+            <div>
+                <span>Total Amount</span>
+                <strong>₹{{ order.total_amount }}</strong>
+            </div>
+        </div>
+
+        <div class="success-actions">
+            <a href="{% url 'customer_orders' %}" class="btn primary">
+                View My Orders
+            </a>
+            <a href="{% url 'customer_restaurants' %}" class="btn outline">
+                Continue Shopping
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

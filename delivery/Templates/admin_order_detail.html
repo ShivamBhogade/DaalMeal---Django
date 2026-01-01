@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="order-detail-page">
+
+    <div class="order-card">
+
+        <!-- HEADER -->
+        <div class="order-header">
+            <h2>📦 Order #{{ order.id }}</h2>
+            <span class="status-badge {{ order.status|lower }}">
+                {{ order.status }}
+            </span>
+        </div>
+
+        <!-- TOTAL -->
+        <div class="order-total">
+            Total: <strong>₹{{ order.total_amount }}</strong>
+        </div>
+
+        <!-- ITEMS -->
+        <div class="order-section">
+            <h3>Items</h3>
+
+            {% for item in order.items.all %}
+            <div class="order-item">
+                <span>{{ item.menu_item.name }} × {{ item.quantity }}</span>
+                <span>₹{{ item.price }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- UPDATE STATUS -->
+        <div class="order-section">
+            <h3>Update Status</h3>
+
+            <form method="post" class="status-form">
+                {% csrf_token %}
+                <select name="status">
+                    <option value="PLACED" {% if order.status == "PLACED" %}selected{% endif %}>Placed</option>
+                    <option value="OUT_FOR_DELIVERY" {% if order.status == "OUT_FOR_DELIVERY" %}selected{% endif %}>Out for delivery</option>
+                    <option value="DELIVERED" {% if order.status == "DELIVERED" %}selected{% endif %}>Delivered</option>
+                </select>
+
+                <button type="submit" class="btn btn-update">Update</button>
+            </form>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="order-actions">
+            <a href="{% url 'admin_orders' %}" class="btn btn-back">← Back to Orders</a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

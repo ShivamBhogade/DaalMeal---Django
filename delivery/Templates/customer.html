@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard">
+    <h1 class="dashboard-title">Welcome back 👋</h1>
+    <p class="dashboard-subtitle">What would you like to do today?</p>
+
+    <div class="dashboard-cards">
+        <a href="{% url 'customer_restaurants' %}" class="dash-card">
+            🍽️
+            <h3>Browse Restaurants</h3>
+            <p>Explore nearby restaurants & menus</p>
+        </a>
+
+        <a href="{% url 'customer_orders' %}" class="dash-card">
+            📦
+            <h3>My Orders</h3>
+            <p>Track your current & past orders</p>
+        </a>
+
+        <a href="{% url 'view_cart' %}" class="dash-card">
+            🛒
+            <h3>My Cart</h3>
+            <p>Review items before placing order</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

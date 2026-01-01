@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="admin-orders-page">
+
+    <h1 class="page-title">📦 All Customer Orders</h1>
+
+    <div class="orders-list">
+        {% for order in orders %}
+        <div class="order-row">
+            <div>
+                <strong>Order #{{ order.id }}</strong>
+                <span class="amount">₹{{ order.total }}</span>
+            </div>
+
+            <span class="status">{{ order.status }}</span>
+
+            <a href="{% url 'admin_order_detail' order.id %}" class="btn btn-view">
+                View
+            </a>
+        </div>
+        {% empty %}
+        <p class="empty-text">No orders found.</p>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

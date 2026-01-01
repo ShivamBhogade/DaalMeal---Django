@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="admin-container">
+
+    <h2 class="page-title">👨‍💼 Admin Dashboard</h2>
+    <p class="page-subtitle">Manage restaurants, menus, and customer orders</p>
+
+    <div class="admin-grid">
+
+        <a href="{% url 'add_restaurant' %}" class="admin-card">
+            <div class="icon">➕</div>
+            <h3>Add Restaurant</h3>
+            <p>Create new restaurant listings</p>
+        </a>
+
+        <a href="{% url 'view_restaurant' %}" class="admin-card">
+            <div class="icon">🏪</div>
+            <h3>View Restaurants</h3>
+            <p>Edit or delete restaurants</p>
+        </a>
+
+        <a href="{% url 'admin_orders' %}" class="admin-card">
+            <div class="icon">📦</div>
+            <h3>View Orders</h3>
+            <p>Update order status</p>
+        </a>
+
+        <a href="{% url 'logout' %}" class="admin-card danger">
+            <div class="icon">🚪</div>
+            <h3>Logout</h3>
+            <p>Exit admin panel</p>
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

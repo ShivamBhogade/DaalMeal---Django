@@ -1,0 +1,13 @@
+<h2>Menu – {{ restaurant.name }}</h2>
+
+<a href="{% url 'add_menu' restaurant.id %}">Add Menu Item</a>
+
+<ul>
+{% for item in menu_items %}
+    <li>{{ item.name }} – ₹{{ item.price }} ({{ item.description }})</li>
+{% empty %}
+    <li>No menu items yet</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'view_restaurant' %}">Back</a>

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <h1>🍽 Available Restaurants</h1>
+    <p>Choose from top-rated restaurants near you</p>
+</div>
+
+<div class="restaurant-grid">
+    {% for restaurant in restaurants %}
+        <div class="restaurant-card">
+            <img src="{{ restaurant.picture_url }}" alt="{{ restaurant.name }}">
+
+            <div class="restaurant-info">
+                <h3>{{ restaurant.name }}</h3>
+
+                <p class="cuisine">
+                    {{ restaurant.cuisine_type }}
+                    <span class="rating">⭐ {{ restaurant.rating }}</span>
+                </p>
+
+                <p class="address">{{ restaurant.address }}</p>
+
+                <a href="{% url 'customer_menu' restaurant.id %}" class="btn">
+                    View Menu →
+                </a>
+            </div>
+        </div>
+    {% empty %}
+        <p>No restaurants available.</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="orders-container">
+    <h2 class="page-title">📦 My Orders</h2>
+
+    {% if orders %}
+        {% for order in orders %}
+        <div class="order-card">
+            <div class="order-header">
+                <div>
+                    <strong>Order #{{ order.id }}</strong>
+                    <p class="order-date">
+                        {{ order.created_at|date:"d M Y, h:i A" }}
+                    </p>
+                </div>
+
+                <span class="status {{ order.status|lower }}">
+                    {{ order.status }}
+                </span>
+            </div>
+
+            <div class="order-body">
+                <p><strong>Total:</strong> ₹{{ order.total_amount }}</p>
+
+                <a href="{% url 'order_detail' order.id %}" class="btn primary small">
+                    View Details →
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="empty-box">
+            <p>You have not placed any orders yet 🍽️</p>
+            <a href="{% url 'customer_restaurants' %}" class="btn primary">
+                Browse Restaurants
+            </a>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

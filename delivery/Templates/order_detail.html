@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="order-detail-container">
+
+    <h2 class="page-title">🧾 Order #{{ order.id }}</h2>
+
+    <!-- ORDER SUMMARY -->
+    <div class="order-summary-card">
+        <div>
+            <p><strong>Total Amount:</strong> ₹{{ order.total_amount }}</p>
+            <p><strong>Placed On:</strong> {{ order.created_at|date:"d M Y, h:i A" }}</p>
+        </div>
+
+        <span class="status {{ order.status|lower }}">
+            {{ order.status }}
+        </span>
+    </div>
+
+    <!-- ORDER ITEMS -->
+    <h3 class="section-title">🍽️ Items Ordered</h3>
+
+    <div class="items-card">
+        {% for item in items %}
+        <div class="item-row">
+            <div>
+                <strong>{{ item.menu_item.name }}</strong>
+                <p class="muted">Quantity: {{ item.quantity }}</p>
+            </div>
+
+            <div class="price">
+                ₹{{ item.price }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="actions">
+        <a href="{% url 'customer_orders' %}" class="btn outline">
+            ← Back to Orders
+        </a>
+
+        <a href="{% url 'customer_restaurants' %}" class="btn primary">
+            Continue Shopping
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+{% if cart %}
+<!-- CART WITH ITEMS -->
+<div class="cart-container">
+    <h2>Your Cart</h2>
+
+    {% for item in cart.values %}
+    <div class="cart-item">
+        <div>
+            <h4>{{ item.name }}</h4>
+            <p>Qty: {{ item.qty }}</p>
+        </div>
+        <div class="price">
+            ₹{{ item.price|floatformat:2 }}
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="cart-total">
+        <h3>Total: ₹{{ total }}</h3>
+    </div>
+
+    <a href="{% url 'place_order' %}" class="btn primary">
+        Place Order
+    </a>
+</div>
+
+{% else %}
+<!-- EMPTY CART (SAME TEMPLATE) -->
+<div class="empty-state">
+    <div class="empty-card">
+        <div class="empty-icon">🛒</div>
+        <h2>Your cart is empty</h2>
+        <p>Add some delicious food to continue</p>
+
+        <a href="{% url 'customer_restaurants' %}" class="btn primary">
+            Browse Restaurants
+        </a>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

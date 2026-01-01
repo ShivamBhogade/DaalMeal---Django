@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="add-menu-page">
+
+    <div class="add-menu-card">
+        <h2 class="add-menu-title">
+            🍽️ Add Menu Item
+            <span class="restaurant-name">{{ restaurant.name }}</span>
+        </h2>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Item Name</label>
+                <input type="text" name="name" placeholder="Item name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Price (₹)</label>
+                <input type="number" step="0.01" name="price" placeholder="Price" required>
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <input type="text" name="description" placeholder="Description">
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-add">Add Item</button>
+                <a href="{% url 'view_restaurant' %}" class="btn btn-back">Back</a>
+            </div>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

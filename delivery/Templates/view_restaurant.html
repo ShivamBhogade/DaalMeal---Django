@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="admin-container">
+
+    <h1 class="page-title">🍽️ Restaurants List</h1>
+
+    <div class="restaurant-grid">
+        {% for r in restaurants %}
+        <div class="restaurant-card">
+
+            <div class="image-box">
+                {% if r.picture_url %}
+                    <img src="{{ r.picture_url }}" alt="{{ r.name }}">
+                {% else %}
+                    <div class="no-img">No Image</div>
+                {% endif %}
+            </div>
+
+            <div class="card-body">
+                <h3>{{ r.name }}</h3>
+
+                <p class="address">{{ r.address }}</p>
+
+                <p><strong>📞</strong> {{ r.phone_number }}</p>
+                <p><strong>🍴</strong> {{ r.cuisine_type }}</p>
+
+                <p class="rating">⭐ {{ r.rating }}</p>
+
+               <div class="actions">
+                <a href="{% url 'update_restaurant' r.id %}" class="btn btn-edit">Edit</a>
+                 <a href="{% url 'delete_restaurant' r.id %}" 
+                  class="btn btn-delete"
+                  onclick="return confirm('Are you sure?')">Delete</a>
+                 <a href="{% url 'add_menu' r.id %}" class="btn btn-menu">Menu</a>
+                </div>
+
+            </div>
+
+        </div>
+        {% empty %}
+        <p class="empty-text">No restaurants added yet.</p>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
